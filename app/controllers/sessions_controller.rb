@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # GET /users/user[:id]へリダイレクト
       log_in user
+      remember user
       redirect_to user # redirect_to user_url(user)の省略形(GET /users/user[:id])
     else
       flash.now[:danger] = 'Invalid email/password combination' 
